@@ -15,6 +15,7 @@ export function Help () {
       <Tooltip title='¿Cómo se inicia sesión?' arrow>
         <Button
           variant='outlined'
+          color='info'
           onClick={handleOpen}
         >
           <QuestionMarkIcon />

@@ -3,10 +3,19 @@ import { Help } from '../components/Help'
 import { useEffect, useState } from 'react'
 import { QrCode } from '../components/QrCode'
 import { HandleAlert } from '../components/HandleAlerts'
+import { useNavigate } from 'react-router-dom'
 
 export function Login () {
   const [qrCode, setQrCode] = useState<null | string>(null)
   const [isLogin, setIsLogin] = useState(false)
+  const navigate = useNavigate()
+
+  if (isLogin) {
+    setTimeout(() => {
+      console.log({ location })
+      navigate('/chatbot/inicio')
+    }, 5000)
+  }
 
   useEffect(() => {
     setTimeout(() => {
