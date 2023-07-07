@@ -7,10 +7,10 @@ export function Create () {
   const { isInCreateMode, isInAddActionMode, isInAddAnswerMode } = useZustandFlowStore()
 
   return (
-    <div>
+    <>
       {isInCreateMode && <CreateFlow />}
       {isInAddActionMode && <AddAction />}
       {isInAddAnswerMode && <AddAnswer />}
-    </div>
+    </>
   )
 }

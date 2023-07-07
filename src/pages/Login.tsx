@@ -1,9 +1,11 @@
-import { Container, Stack, Typography } from '@mui/material'
+import { Stack, Typography } from '@mui/material'
 import { Help } from '../components/Help'
 import { useEffect, useState } from 'react'
 import { QrCode } from '../components/QrCode'
-import { HandleAlert } from '../components/HandleAlerts'
 import { useNavigate } from 'react-router-dom'
+
+import { toast } from 'sonner'
+import { Notification } from '../components/Notification'
 
 export function Login () {
   const [qrCode, setQrCode] = useState<null | string>(null)
@@ -12,7 +14,6 @@ export function Login () {
 
   if (isLogin) {
     setTimeout(() => {
-      console.log({ location })
       navigate('/chatbot/inicio')
     }, 5000)
   }
@@ -24,22 +25,18 @@ export function Login () {
 
     setTimeout(() => {
       setIsLogin(true)
+      toast.success('Sesion iniciada')
     }, 10000)
   }, [])
 
   return (
-    <Container>
+    <>
       <Stack height='100vh' direction='column' justifyContent='center' alignItems='center' spacing={2}>
         <QrCode qrCode={qrCode} />
         <Typography variant='h5'>Escanea el codigo qr</Typography>
         <Help />
-        <HandleAlert
-          condition={isLogin}
-          variant='success'
-          title='Sesion Iniciada'
-          message='Ahora te redireccionaremos para que puedas configurar tu chatBot'
-        />
       </Stack>
-    </Container>
+      <Notification position='bottom-center' />
+    </>
   )
 }
